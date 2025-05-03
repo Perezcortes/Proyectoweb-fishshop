@@ -9,6 +9,11 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import '../../../styles/AgregarProductoModal.css'
 
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, Legend,
+  CartesianGrid, ResponsiveContainer, Cell
+} from 'recharts'
+
 interface Producto {
   id_producto: number;
   nombre: string;
@@ -22,7 +27,8 @@ interface Producto {
 export default function AdminHome() {
   const [productos, setProductos] = useState<Producto[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const formRef = useRef<HTMLFormElement | null>(null); // Referencia al formulario
+  const [showChart, setShowChart] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const fetchProductos = async () => {
     try {
@@ -64,9 +70,24 @@ export default function AdminHome() {
   };
 
   const handleCancel = () => {
-    if (formRef.current) formRef.current.reset(); // Limpia el formulario
-    setShowForm(false); // Cierra el modal
+    if (formRef.current) formRef.current.reset();
+    setShowForm(false);
   };
+
+  const toggleChart = () => {
+    setShowChart(!showChart);
+  };
+
+  // Agrupar productos por marca y sumar stock
+  const dataGrafico: { marca: string, stock: number }[] = Object.values(
+    productos.reduce((acc: any, prod) => {
+      if (!acc[prod.marca]) {
+        acc[prod.marca] = { marca: prod.marca, stock: 0 };
+      }
+      acc[prod.marca].stock += prod.stock;
+      return acc;
+    }, {})
+  );
 
   return (
     <div className="dashboard-home">
@@ -96,10 +117,34 @@ export default function AdminHome() {
         <button className="btn primary" onClick={() => setShowForm(true)}>
           <FiPlus /> Agregar producto
         </button>
-        <button className="btn secondary">
+        <button className="btn secondary" onClick={toggleChart}>
           <FiBarChart /> Ver reportes
         </button>
       </div>
+
+      {/* Gráfico de productos por marca */}
+      {showChart && (
+        <div className="chart-container">
+          <h2>Stock por Marca</h2>
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={dataGrafico} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="marca" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="stock">
+                {dataGrafico.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.stock < 10 ? '#e53e3e' : '#3182ce'}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
 
       {/* Modal para agregar producto */}
       <div className={`modal ${showForm ? 'active' : ''}`}>

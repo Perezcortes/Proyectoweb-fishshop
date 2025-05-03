@@ -1,6 +1,7 @@
 import React from 'react';
-import '../styles/card.css'; 
+import '../styles/card.css';
 import { Producto } from '../types/producto';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Card = ({ producto }: { producto: Producto }) => {
   return (
@@ -18,7 +19,9 @@ const Card = ({ producto }: { producto: Producto }) => {
         <p className="product-description">{producto.descripcion}</p>
         <div className="product-footer">
           <span className="product-price">${producto.precio.toFixed(2)}</span>
-          <button className="add-to-cart">Agregar al carrito</button>
+          <button className="add-to-cart" aria-label="Agregar al carrito">
+            <FaShoppingCart />
+          </button>
         </div>
       </div>
     </div>
