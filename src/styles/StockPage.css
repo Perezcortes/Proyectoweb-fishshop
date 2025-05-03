@@ -1,0 +1,37 @@
+.stock-container {
+    padding: 1.5rem;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .stock-container h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  
+  .stock-table th,
+  .stock-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .stock-table th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+  }
+  
+  .low-stock {
+    color: #e53935;
+    font-weight: bold;
+  }
+  
