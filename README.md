@@ -31,6 +31,9 @@ perezcortes-proyectoweb-fishshop/
 
 ### 🔹 Backend - `perezcortes-fishapi/` (FastAPI)
 
+Estos archivos los puedes encontrar en este repositorio:
+https://github.com/Perezcortes/FishAPI.git
+
 ```
 perezcortes-fishapi/
 ├── fishapi_db.sql                # Archivo SQL con estructura de la base de datos
