@@ -1,0 +1,127 @@
+/* src/styles/AjustesAdmin.css */
+.settings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: var(--text-dark);
+  }
+  
+  .settings-container h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+  }
+  
+  .settings-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .settings-section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+  
+  .settings-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-mid);
+  }
+  
+  .settings-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    color: var(--primary-dark);
+  }
+  
+  .form-input {
+    padding: 0.75rem;
+    border: 1px solid var(--primary-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  .save-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    align-self: flex-start;
+  }
+  
+  .save-button:hover {
+    background-color: var(--accent-hover);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .settings-container {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .settings-container h1 {
+      font-size: 1.8rem;
+    }
+    
+    .settings-section h2 {
+      font-size: 1.3rem;
+    }
+    
+    .settings-form {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .settings-container {
+      padding: 1rem;
+    }
+    
+    .settings-section {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .settings-container h1 {
+      font-size: 1.5rem;
+    }
+    
+    .form-input {
+      padding: 0.6rem;
+    }
+    
+    .save-button {
+      width: 100%;
+    }
+  }

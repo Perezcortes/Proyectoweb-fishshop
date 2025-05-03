@@ -1,12 +1,15 @@
-// src/components/sidebar.tsx
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   FiHome, FiPackage, FiPlusCircle, FiPieChart,
   FiShoppingCart, FiInfo, FiSettings, FiMenu, FiLogOut
 } from 'react-icons/fi'
+import { toast, ToastContainer } from 'react-toastify'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-toastify/dist/ReactToastify.css'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 const navItems = [
   { name: 'Inicio', path: '/admin', icon: FiHome },
@@ -21,9 +24,36 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const router = useRouter()
+
+  const handleLogout = () => {
+    confirmAlert({
+      title: '¿Cerrar sesión?',
+      message: '¿Estás seguro de que deseas cerrar sesión?',
+      buttons: [
+        {
+          label: 'Sí',
+          onClick: () => {
+            toast.success('¡Hasta luego!', {
+              position: 'top-center',
+              autoClose: 1500,
+              onClose: () => router.push('/')
+            })
+          }
+        },
+        {
+          label: 'Cancelar',
+          onClick: () => {
+            // Ya no mostramos ninguna notificación
+          }
+        }
+      ]
+    })
+  }  
 
   return (
     <>
+      <ToastContainer />
       <button
         className="mobile-menu-button"
         onClick={() => setMobileOpen(!mobileOpen)}
@@ -34,11 +64,7 @@ export default function Sidebar() {
 
       <aside className={`sidebar ${mobileOpen ? 'open' : ''}`}>
         <div className="sidebar-title">
-          <img
-            src="./logo.png"
-            alt="FishShop Logo"
-            className="logo-image"
-          />
+          <img src="/logo.png" alt="FishShop Logo" className="logo-image" />
           <span>FishShop Admin</span>
         </div>
 
@@ -63,10 +89,10 @@ export default function Sidebar() {
         </ul>
 
         <div className="sidebar-footer">
-          <Link href="/logout" className="logout-button">
+          <button className="logout-button" onClick={handleLogout}>
             <FiLogOut />
             <span>Cerrar sesión</span>
-          </Link>
+          </button>
         </div>
       </aside>
     </>
