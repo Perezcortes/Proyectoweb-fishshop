@@ -14,7 +14,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 const navItems = [
   { name: 'Inicio', path: '/admin', icon: FiHome },
   { name: 'Productos', path: '/admin/productos', icon: FiPackage },
-  { name: 'Agregar Producto', path: '/admin/producto/new', icon: FiPlusCircle },
   { name: 'Stock', path: '/admin/stock', icon: FiPieChart },
   { name: 'Carrito', path: '/admin/carrito', icon: FiShoppingCart },
   { name: 'Acerca de', path: '/admin/acerca', icon: FiInfo },
