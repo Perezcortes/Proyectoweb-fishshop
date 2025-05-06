@@ -9,7 +9,7 @@ type CartContextType = {
   carrito: CartItem[];
   agregarAlCarrito: (producto: Producto) => void;
   updateQuantity: (id_producto: number, cantidad: number) => void;
-  eliminarDelCarrito: (id_producto: number) => void; // ✅ Añadido aquí
+  eliminarDelCarrito: (id_producto: number) => void; 
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
