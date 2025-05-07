@@ -359,23 +359,6 @@
   }
 }
 
-.deleteButton {
-  background-color: #e53e3e; /* rojo suave */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.deleteButton:hover {
-  background-color: #c53030; /* más oscuro al pasar el mouse */
-}
 
 .quantity {
   display: flex;
@@ -403,4 +386,108 @@
   font-weight: 500;
   min-width: 24px;
   text-align: center;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px; /* Espacio ligero entre los botones */
+  align-items: center; /* Alinea los botones verticalmente al centro */
+}
+
+.deleteButton {
+  background-color: #e53e3e; /* rojo suave */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.deleteButton:hover {
+  background-color: #c53030; /* más oscuro al pasar el mouse */
+}
+
+.viewButton {
+  background-color: #007bff; /* rojo suave */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.viewButton:hover {
+  background-color: #0056b3; /* más oscuro al pasar el mouse */
+}
+
+.emptyCartMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  padding: 20px;
+  font-weight: bold;
+}
+
+/* Estilos para el modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modalActions {
+  margin-top: 1rem;
+}
+
+.cancelBtn,
+.confirmBtn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancelBtn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.confirmBtn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.cancelBtn:hover,
+.confirmBtn:hover {
+  opacity: 0.8;
 }

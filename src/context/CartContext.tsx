@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { Producto } from '../types/producto';
+import ModalViewProducto from '../components/ModalViewProducto';
 
 type CartItem = Producto & { cantidad: number };
 
@@ -9,13 +10,16 @@ type CartContextType = {
   carrito: CartItem[];
   agregarAlCarrito: (producto: Producto) => void;
   updateQuantity: (id_producto: number, cantidad: number) => void;
-  eliminarDelCarrito: (id_producto: number) => void; 
+  eliminarDelCarrito: (id_producto: number) => void;
+  mostrarInfoProducto: (producto: Producto) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [carrito, setCarrito] = useState<CartItem[]>([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
 
   const agregarAlCarrito = (producto: Producto) => {
     setCarrito((prev) => {
@@ -43,9 +47,30 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCarrito((prev) => prev.filter(item => item.id_producto !== id_producto));
   };
 
+  const mostrarInfoProducto = (producto: Producto) => {
+    setProductoSeleccionado(producto);
+    setModalVisible(true);
+  };
+
   return (
-    <CartContext.Provider value={{ carrito, agregarAlCarrito, updateQuantity, eliminarDelCarrito }}>
+    <CartContext.Provider value={{ carrito, agregarAlCarrito, updateQuantity, eliminarDelCarrito, mostrarInfoProducto }}>
       {children}
+
+      {modalVisible && productoSeleccionado && (
+        <ModalViewProducto onClose={() => setModalVisible(false)}>
+          <h2>{productoSeleccionado.nombre}</h2>
+          <img
+            src={productoSeleccionado.imagen}
+            alt={productoSeleccionado.nombre}
+            style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', marginBottom: '1rem' }}
+          />
+          <p><strong>Marca:</strong> {productoSeleccionado.marca}</p>
+          <p><strong>Descripción:</strong> {productoSeleccionado.descripcion}</p>
+          <p><strong>Precio:</strong> ${productoSeleccionado.precio}</p>
+          <button onClick={() => setModalVisible(false)}>Cerrar</button>
+        </ModalViewProducto>
+      )}
+
     </CartContext.Provider>
   );
 };

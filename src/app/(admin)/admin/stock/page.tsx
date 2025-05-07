@@ -57,7 +57,13 @@ export default function StockPage() {
               <td>{producto.nombre}</td>
               <td>{producto.marca}</td>
               <td className={producto.stock < 10 ? 'low-stock' : ''}>
-                {producto.stock}
+                {producto.stock < 10 ? (
+                  <span className="warning">
+                    ⚠️ Stock bajo: {producto.stock}
+                  </span>
+                ) : (
+                  producto.stock
+                )}
               </td>
             </tr>
           ))}
